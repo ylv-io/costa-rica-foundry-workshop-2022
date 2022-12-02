@@ -1300,50 +1300,10 @@
         }
       }
     },
-    "src/Counter.sol": {
-      "lastModificationDate": 1669922688542,
-      "contentHash": "ae6c800a2b4c57768024d6e9423d39e8",
-      "sourceName": "src/Counter.sol",
-      "solcConfig": {
-        "settings": {
-          "optimizer": {
-            "enabled": true,
-            "runs": 200
-          },
-          "metadata": {
-            "bytecodeHash": "ipfs",
-            "appendCBOR": true
-          },
-          "outputSelection": {
-            "*": {
-              "": [
-                "ast"
-              ],
-              "*": [
-                "abi",
-                "evm.bytecode",
-                "evm.deployedBytecode",
-                "evm.methodIdentifiers",
-                "metadata"
-              ]
-            }
-          },
-          "evmVersion": "london",
-          "libraries": {}
-        }
-      },
-      "imports": [],
-      "versionRequirement": "^0.8.13",
-      "artifacts": {
-        "Counter": {
-          "0.8.16+commit.07a7930e.Darwin.appleclang": "Counter.sol/Counter.json"
-        }
-      }
-    },
-    "test/Counter.t.sol": {
-      "lastModificationDate": 1669922688542,
-      "contentHash": "b1a6521ba9c61d5266bab1fc9a057d68",
-      "sourceName": "test/Counter.t.sol",
+    "test/CostaRicaWorkshop2022.t.sol": {
+      "lastModificationDate": 1670013541844,
+      "contentHash": "ccdc9bd85c3afcfa800cb21d1ed13e19",
+      "sourceName": "test/CostaRicaWorkshop2022.t.sol",
       "solcConfig": {
         "settings": {
           "optimizer": {
@@ -1387,12 +1347,24 @@
         "lib/forge-std/src/Vm.sol",
         "lib/forge-std/src/console.sol",
         "lib/forge-std/src/console2.sol",
-        "src/Counter.sol"
+        "lib/openzeppelin-contracts/contracts/access/Ownable.sol",
+        "lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol",
+        "lib/openzeppelin-contracts/contracts/token/ERC721/IERC721.sol",
+        "lib/openzeppelin-contracts/contracts/token/ERC721/IERC721Receiver.sol",
+        "lib/openzeppelin-contracts/contracts/token/ERC721/extensions/IERC721Metadata.sol",
+        "lib/openzeppelin-contracts/contracts/utils/Address.sol",
+        "lib/openzeppelin-contracts/contracts/utils/Context.sol",
+        "lib/openzeppelin-contracts/contracts/utils/Counters.sol",
+        "lib/openzeppelin-contracts/contracts/utils/Strings.sol",
+        "lib/openzeppelin-contracts/contracts/utils/introspection/ERC165.sol",
+        "lib/openzeppelin-contracts/contracts/utils/introspection/IERC165.sol",
+        "lib/openzeppelin-contracts/contracts/utils/math/Math.sol",
+        "src/CostaRicaWorkshop2022.sol"
       ],
       "versionRequirement": "^0.8.13",
       "artifacts": {
         "CounterTest": {
-          "0.8.16+commit.07a7930e.Darwin.appleclang": "Counter.t.sol/CounterTest.json"
+          "0.8.16+commit.07a7930e.Darwin.appleclang": "CostaRicaWorkshop2022.t.sol/CounterTest.json"
         }
       }
     }
