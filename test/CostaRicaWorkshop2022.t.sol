@@ -5,7 +5,7 @@ import 'forge-std/Test.sol';
 
 import {CostaRicaWorkshop2022} from '../src/CostaRicaWorkshop2022.sol';
 
-contract CounterTest is Test {
+contract WorkShopTest is Test {
     CostaRicaWorkshop2022 public workshop;
 
     address payable internal alice = payable(makeAddr('alice'));
