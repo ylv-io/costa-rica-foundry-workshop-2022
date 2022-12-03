@@ -11,6 +11,8 @@ contract CounterTest is Test {
     address payable internal alice = payable(makeAddr('alice'));
     address payable internal bob = payable(makeAddr('bob'));
 
+    event Transfer(address indexed from, address indexed to, uint256 indexed tokenId);
+
     function setUp() public {
         vm.label(alice, 'alice');
         vm.label(bob, 'bob');
@@ -59,7 +61,6 @@ contract CounterTest is Test {
         assertEq(workshop.ownerOf(0), bob);
     }
 
-
     // test that first NFT has id 0 and second NFT has id 1
     function testMintMultiple() public {
         // prank msg.sender to be alice
@@ -75,8 +76,6 @@ contract CounterTest is Test {
         assertEq(workshop.ownerOf(1), alice);
     }
 
-    event Transfer(address indexed from, address indexed to, uint256 indexed tokenId);
-
     // test that mint function emits Transfer event
     function testMintEvent() public {
         // prank msg.sender to be alice
@@ -88,6 +87,21 @@ contract CounterTest is Test {
         workshop.mint(alice);
     }
 
+    // test that mint can function can mint multiple NFTs for the same address
+    function testMintMultipleForSameAddress(uint8 count) public {
+        // prank msg.sender to be alice
+        vm.prank(alice);
+
+        for (uint256 index = 0; index < count; index++) {
+            workshop.mint(alice);
+        }
+
+        assertEq(workshop.balanceOf(alice), count);
+
+        for (uint256 index = 0; index < count; index++) {
+            assertEq(workshop.ownerOf(index), alice);
+        }
+    }
 
     /* ============ External View Functions ============ */
 }
