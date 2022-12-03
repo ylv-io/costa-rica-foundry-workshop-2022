@@ -5,7 +5,7 @@ import '@openzeppelin/contracts/token/ERC721/ERC721.sol';
 import '@openzeppelin/contracts/access/Ownable.sol';
 import '@openzeppelin/contracts/utils/Counters.sol';
 
-import "forge-std/console.sol";
+import 'forge-std/console.sol';
 
 /*
  ______     ______     ______     ______   ______        ______     __     ______     ______    
@@ -42,12 +42,11 @@ contract CostaRicaWorkshop2022 is ERC721, Ownable {
 
     /* ============ Modifiers ============ */
     modifier EventIsOpen() {
-        if(block.timestamp > eventEndsTS) {
+        if (block.timestamp > eventEndsTS) {
             revert EventIsOver();
         }
         _;
     }
-
 
     /* ============ External Write Functions ============ */
 
