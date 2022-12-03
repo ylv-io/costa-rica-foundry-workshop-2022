@@ -2,7 +2,6 @@
 pragma solidity ^0.8.9;
 
 import '@openzeppelin/contracts/token/ERC721/ERC721.sol';
-import '@openzeppelin/contracts/access/Ownable.sol';
 import '@openzeppelin/contracts/utils/Counters.sol';
 
 import 'forge-std/console.sol';
@@ -15,7 +14,7 @@ import 'forge-std/console.sol';
   \/_____/   \/_____/   \/_____/     \/_/   \/_/\/_/      \/_/ /_/   \/_/   \/_____/   \/_/\/_/
  */
 
-contract CostaRicaWorkshop2022 is ERC721, Ownable {
+contract CostaRicaWorkshop2022 is ERC721 {
     using Counters for Counters.Counter;
 
     /* ============ Errors ============ */
