@@ -42,8 +42,6 @@ contract CostaRicaWorkshop2022 is ERC721, Ownable {
 
     /* ============ Modifiers ============ */
     modifier EventIsOpen() {
-        console.log(block.timestamp);
-        console.log(eventEndsTS);
         if(block.timestamp > eventEndsTS) {
             revert EventIsOver();
         }

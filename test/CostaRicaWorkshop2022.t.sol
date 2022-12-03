@@ -2,6 +2,7 @@
 pragma solidity ^0.8.13;
 
 import 'forge-std/Test.sol';
+
 import {CostaRicaWorkshop2022} from '../src/CostaRicaWorkshop2022.sol';
 
 contract CounterTest is Test {
@@ -18,6 +19,8 @@ contract CounterTest is Test {
     }
 
     /* ============ External Write Functions ============ */
+
+    /* ============ Mint ============ */
 
     // write a test for mint function
     function testMint() public {
@@ -43,6 +46,48 @@ contract CounterTest is Test {
         vm.expectRevert(CostaRicaWorkshop2022.EventIsOver.selector);
         workshop.mint(alice);
     }
+
+    // test that NFT can be minted to bob address by alice
+    function testMintToBob() public {
+        // prank msg.sender to be alice
+        vm.prank(alice);
+
+        workshop.mint(bob);
+
+        assertEq(workshop.balanceOf(bob), 1);
+        // check that erc721 token id is equal to 0 using ownerOf method
+        assertEq(workshop.ownerOf(0), bob);
+    }
+
+
+    // test that first NFT has id 0 and second NFT has id 1
+    function testMintMultiple() public {
+        // prank msg.sender to be alice
+        vm.prank(alice);
+
+        workshop.mint(alice);
+        workshop.mint(alice);
+
+        assertEq(workshop.balanceOf(alice), 2);
+        // check that erc721 token id is equal to 0 using ownerOf method
+        assertEq(workshop.ownerOf(0), alice);
+        // check that erc721 token id is equal to 1 using ownerOf method
+        assertEq(workshop.ownerOf(1), alice);
+    }
+
+    event Transfer(address indexed from, address indexed to, uint256 indexed tokenId);
+
+    // test that mint function emits Transfer event
+    function testMintEvent() public {
+        // prank msg.sender to be alice
+        vm.prank(alice);
+
+        // expect Transfer event to be emitted
+        vm.expectEmit(true, true, false, true, address(workshop));
+        emit Transfer(address(0), address(alice), 0);
+        workshop.mint(alice);
+    }
+
 
     /* ============ External View Functions ============ */
 }
