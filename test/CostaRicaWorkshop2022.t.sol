@@ -31,5 +31,18 @@ contract CounterTest is Test {
         assertEq(workshop.ownerOf(0), alice);
     }
 
+    // test that NFT can not be minted after 24 hours
+    function testMintAfter24Hours() public {
+        // prank msg.sender to be alice
+        vm.prank(alice);
+
+        // advance time by 24 hours
+        skip(24 * 3600 + 1);
+
+        // expect mint function to revert
+        vm.expectRevert(CostaRicaWorkshop2022.EventIsOver.selector);
+        workshop.mint(alice);
+    }
+
     /* ============ External View Functions ============ */
 }

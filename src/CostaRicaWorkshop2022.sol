@@ -5,6 +5,8 @@ import '@openzeppelin/contracts/token/ERC721/ERC721.sol';
 import '@openzeppelin/contracts/access/Ownable.sol';
 import '@openzeppelin/contracts/utils/Counters.sol';
 
+import "forge-std/console.sol";
+
 /*
  ______     ______     ______     ______   ______        ______     __     ______     ______    
 /\  ___\   /\  __ \   /\  ___\   /\__  _\ /\  __ \      /\  == \   /\ \   /\  ___\   /\  __ \   
@@ -16,6 +18,9 @@ import '@openzeppelin/contracts/utils/Counters.sol';
 /// @custom:security-contact to@ylv.io
 contract CostaRicaWorkshop2022 is ERC721, Ownable {
     using Counters for Counters.Counter;
+
+    /* ============ Errors ============ */
+    error EventIsOver();
 
     /* ============ Storage ============ */
     Counters.Counter private _tokenIdCounter;
@@ -36,19 +41,19 @@ contract CostaRicaWorkshop2022 is ERC721, Ownable {
     }
 
     /* ============ Modifiers ============ */
-    modifier isEventOpen() {
-        require(block.timestamp < eventEndsTS, 'Event is not open');
+    modifier EventIsOpen() {
+        console.log(block.timestamp);
+        console.log(eventEndsTS);
+        if(block.timestamp > eventEndsTS) {
+            revert EventIsOver();
+        }
         _;
     }
 
-    modifier isEventOver() {
-        require(block.timestamp > eventEndsTS, 'Event is not over');
-        _;
-    }
 
     /* ============ External Write Functions ============ */
 
-    function mint(address to) public isEventOpen {
+    function mint(address to) public EventIsOpen {
         uint256 tokenId = _tokenIdCounter.current();
         _tokenIdCounter.increment();
         _safeMint(to, tokenId);
